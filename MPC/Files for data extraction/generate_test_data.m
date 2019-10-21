@@ -21,6 +21,7 @@ vc_beta =  zeros (1, number_test_data);
 if_alpha = zeros (1, number_test_data);
 if_beta = zeros (1, number_test_data);
 R = zeros (1, number_test_data);
+x_opt  = zeros (1, number_test_data);  %this doesn't represent anything but its for the python to work without changing it
 
 
 
