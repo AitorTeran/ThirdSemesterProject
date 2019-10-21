@@ -36,12 +36,12 @@ features = ['R1',
             'x_opt_old1']
 
 model = tf.keras.Sequential()
-model.add(tf.keras.layers.Dense(8, activation='relu'))
-model.add(tf.keras.layers.Dense(15, activation='relu'))
+model.add(tf.keras.layers.Dense(8, activation='tanh'))
+model.add(tf.keras.layers.Dense(15, activation='tanh'))
 model.add(tf.keras.layers.Dense(7, activation='softmax')) 
 
 model.compile(optimizer='adam',
-              loss='binary_crossentropy',
+              loss='categorical_crossentropy',
               metrics=['accuracy'])
 
 callbacks = keras.callbacks.TensorBoard(log_dir = ".\Tensorboard_logs")
@@ -52,9 +52,9 @@ history = model.fit(
         x = train[features].to_numpy(),
         y = train[labels].to_numpy(),
         batch_size = 10000,
-        steps_per_epoch = 50,
-        validation_split = 0.2,
-        epochs = 10,
+        steps_per_epoch = 100,
+        validation_split = 0.1,
+        epochs = 30,
         callbacks = [callbacks])
 
-model.save('./savedmodel.h5')
+model.save('./savedmodel.h53')
