@@ -12,7 +12,7 @@ end
 %%
 init_file_VSC % call the initialization file
 
-number_test_data=1e6;
+number_test_data=5e5;
 
 x_opt_old = zeros (1, number_test_data); %MPC needs them in 1 row
 time = zeros (1, number_test_data);
@@ -53,6 +53,6 @@ x_opt = x_opt';
 x_opt_old = x_opt_old';
 R = R';
  
-save('Testdata.mat', 'if_alpha', 'if_beta', 'vc_alpha', 'vc_beta' ,'vref_beta','vref_alpha', 'x_opt_old', 'x_opt', 'vector', 'R')
+save('Validationdata.mat', 'if_alpha', 'if_beta', 'vc_alpha', 'vc_beta' ,'vref_beta','vref_alpha', 'x_opt_old', 'x_opt', 'vector', 'R')
 
 toc

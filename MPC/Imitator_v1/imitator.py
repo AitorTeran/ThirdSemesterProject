@@ -50,10 +50,8 @@ train = train.sample(frac = 1)
 history = model.fit(
         x = train[features].to_numpy(),
         y = train[labels].to_numpy(),
-        batch_size = 10000,
-        steps_per_epoch = 100,
-        validation_split = 0.2,
-        epochs = 10,
-        callbacks = [callbacks])
+        batch_size = 100,
+        validation_split = 0.1,
+        epochs = 10)
 
 model.save('./savedmodel.h5')
