@@ -53,6 +53,6 @@ x_opt1 = x_opt';
 x_opt_old1 = x_opt_old';
 R1 = R';
  
-save('Validationdata.mat', 'if_alpha1', 'if_beta1', 'vc_alpha1', 'vc_beta1' ,'vref_beta1','vref_alpha1', 'x_opt_old1', 'x_opt1', 'vector1', 'R1')
+save('Validationdata.mat', 'if_alpha1', 'if_beta1', 'vc_alpha1', 'vc_beta1' ,'vref_beta1','vref_alpha1', 'x_opt_old1', 'x_opt1', 'vector', 'R1')
 
 toc
