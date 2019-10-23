@@ -36,7 +36,7 @@ features = ['R1',
             'x_opt_old1']
 
 model = tf.keras.Sequential()
-model.add(tf.keras.layers.Dense(15, activation='relu', input_dim = 8))
+model.add(tf.keras.layers.Dense(15, activation='sigmoid', input_dim = 8))
 model.add(tf.keras.layers.Dense(7, activation='softmax')) 
 
 model.compile(optimizer='adam',

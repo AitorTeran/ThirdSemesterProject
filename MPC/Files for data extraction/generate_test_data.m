@@ -43,16 +43,16 @@ tic
     [vector(:,i), vref_alpha(i), vref_beta(i)] = MPC_fcn(time(i), vc_alpha(i), vc_beta(i), if_alpha(i), if_beta(i), R(i), x_opt_old(i), v,states, Adf, Bdf, C, wref);
  end
  
-if_alpha=if_alpha'; %to save it in 1 column
-if_beta = if_beta';
-vc_alpha = vc_alpha';
-vc_beta = vc_beta';
-vref_alpha = vref_alpha';
-vref_beta = vref_beta';
-x_opt = x_opt'; 
-x_opt_old = x_opt_old';
-R = R';
+if_alpha1=if_alpha'; %to save it in 1 column
+if_beta1 = if_beta';
+vc_alpha1 = vc_alpha';
+vc_beta1 = vc_beta';
+vref_alpha1 = vref_alpha';
+vref_beta1 = vref_beta';
+x_opt1 = x_opt'; 
+x_opt_old1 = x_opt_old';
+R1 = R';
  
-save('Validationdata.mat', 'if_alpha', 'if_beta', 'vc_alpha', 'vc_beta' ,'vref_beta','vref_alpha', 'x_opt_old', 'x_opt', 'vector', 'R')
+save('Validationdata.mat', 'if_alpha1', 'if_beta1', 'vc_alpha1', 'vc_beta1' ,'vref_beta1','vref_alpha1', 'x_opt_old1', 'x_opt1', 'vector1', 'R1')
 
 toc
