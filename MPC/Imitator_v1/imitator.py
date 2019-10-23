@@ -7,8 +7,8 @@ from tensorflow import keras #Neural network library - Wiki
 
 #COLLECTING THE DATA.
 
-mat = scipy.io.loadmat("./dataANNcrd.mat")  #Load data from matlab array.
-valmat = scipy.io.loadmat("./Validationdata.mat")
+mat = scipy.io.loadmat("./dataANNcrd.mat")          #Load data from matlab array.
+valmat = scipy.io.loadmat("./Validationdata.mat")   
 
 vector = mat['vector']  #Take the submatrix called vector from the loaded matlab array.
 valvector = valmat['vector']
@@ -37,6 +37,14 @@ for x in range(7):
     val['state_' + str(x+1)] = valvector[x,:]
     labels.append('state_' + str(x+1))          #Create array with the names of the states.
 
+features = ['R1',
+            'if_alpha1',
+            'if_beta1',
+            'vc_alpha1',
+            'vc_beta1',
+            'vref_alpha1',
+            'vref_beta1',
+            'x_opt_old1']
 
 #At this point: 
     #result is a tuple containing the state (from 0 to 6) of each sample along with its location in the dataframe, it's no longer used.
@@ -51,15 +59,6 @@ for x in range(7):
 
 
 #TRAINING THE MODEL.
-    
-features = ['R1',
-            'if_alpha1',
-            'if_beta1',
-            'vc_alpha1',
-            'vc_beta1',
-            'vref_alpha1',
-            'vref_beta1',
-            'x_opt_old1']
 
 model = tf.keras.Sequential()   #Create a sequential model, linear stack of layers.
 model.add(tf.keras.layers.Dense(15, activation='relu', input_dim = 8))   #Add layer with 8 neurons and relu activation. Other activations found at https://keras.io/activations/
@@ -78,11 +77,11 @@ train = train.sample(frac = 1)  #Takes frac percentage of the data (in this case
 history = model.fit(        #Train the model with the characteristics listed below.
         x = train[features].to_numpy(), #Input data
         y = train[labels].to_numpy(),   #Target data
-        batch_size = 50,               #Parts in which the dataset is divided into.
-#        validation_split = 0.1,         #What percentage of data is used for validation.
+        batch_size = 50,                #Parts in which the dataset is divided into.
         validation_data = (val[features].to_numpy(), val[labels].to_numpy()),	#Validation data used.
-        epochs = 10                     #How many times the dataset is passed through the neural network.
+        epochs = 20                     #How many times the dataset is passed through the neural network.
         )                    
+#        validation_split = 0.1,         #What percentage of data is used for validation.
 #        callbacks = [callbacks]         #Call the function stated before to save tensoflow data.
 
 model.save('./savedmodel.h5')   #Save the model.
