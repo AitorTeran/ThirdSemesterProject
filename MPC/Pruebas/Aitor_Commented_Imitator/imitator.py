@@ -70,20 +70,20 @@ model.compile(optimizer='adam',             #Other optimizers found at https://k
               loss='binary_crossentropy',   #Other loss functions found at https://keras.io/losses/
               metrics=['accuracy'])
 
-callbacks = keras.callbacks.TensorBoard(log_dir = ".\Tensorboard_logs") #Callbacks are called at different stages of training.
-    #-----Is this what plots the data?
+callbacks = keras.callbacks.TensorBoard(log_dir = ".\Tensorboard_logs") #Callbacks are called at different stages of training, saves data for later inspection.
+
 
 train = train.sample(frac = 1)  #Takes frac percentage of the data (in this case 100%) and shuffles it.
                                 #Taking less than 100% of data could be usefull to only train the model on partial data. 
                                 #Now the data stored in train is shuffled.
                                 
 history = model.fit(                    #Train the model with the characteristics listed below.
-        x = train[features].to_numpy(), #Inputs
-        y = train[labels].to_numpy(),   #Outputs
-        batch_size = 10000,
-        steps_per_epoch = 50,
-        validation_split = 0.2,
-        epochs = 10,
-        callbacks = [callbacks])
+        x = train[features].to_numpy(), #Input data
+        y = train[labels].to_numpy(),   #Target data
+        batch_size = 10000,             #Parts in which the dataset is divided into.
+        validation_split = 0.2,         #What percentage of data is used for validation.
+        epochs = 10,                    #How many times the dataset is passed through the neural network.
+        callbacks = [callbacks]         #Call the function stated before to save tensoflow data.
+        )        
 
 model.save('./savedmodel.h5')   #Save the model.
