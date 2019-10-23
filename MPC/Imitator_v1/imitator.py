@@ -25,15 +25,16 @@ columns.remove('__version__')
 columns.remove('x_opt')
 columns.remove('vector')
 
-train = pd.DataFrame(np.concatenate([mat[c] for c in columns], axis=1), columns=columns)
-#Concatenate in variable train the reminding columns of mat (remember mat was a collection of submatrixes).
+train = pd.DataFrame(np.concatenate([mat[c] for c in columns], axis=1), columns=columns)    #Concatenate in variable train the reminding columns of mat (remember mat was a collection of submatrixes).
+val = pd.DataFrame(np.concatenate([valmat[c] for c in columns], axis=1), columns=columns)
 
 train['state'] = list(result[1]+1)  #Add another column with the state going from 1 to 7.
+val['state'] = list(valresult[1]+1)
 
 labels = []     #Init variable label which will contain the columns of vector with appropiate header.
 for x in range(7):
     train['state_' + str(x+1)] = vector[x,:]    #Add name and include each column in vector.
-	val['state_' + str(x+1)] = valvector[x,:]
+    val['state_' + str(x+1)] = valvector[x,:]
     labels.append('state_' + str(x+1))          #Create array with the names of the states.
 
 

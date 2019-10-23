@@ -1,5 +1,4 @@
 import scipy.io #Mathematical library. 
-
 import numpy as np #Support for large mathematical arrays - Wiki
 import pandas as pd #Allows easy data manipulation and analysis - Wiki
 import tensorflow as tf #Machine learning and neural networks - Wiki
