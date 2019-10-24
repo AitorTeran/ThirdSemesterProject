@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 
 #%% Read test data
-testmat = scipy.io.loadmat("./dataANNcrd.mat")
+testmat = scipy.io.loadmat("./Testdata.mat")
 
 vector = testmat['vector']
 result = np.where(vector.T==1) # numpy .T -> trasponer
@@ -38,7 +38,7 @@ features = ['R1',
 
 
 #%% Make predictions on test data
-model = keras.models.load_model("./savedmodel.h5")
+model = keras.models.load_model("./model_9796.h5")
 predictions = model.predict(test[features])
 
 
@@ -67,7 +67,7 @@ def plot_confusion_matrix(cm, classes,
   plt.xticks(tick_marks, classes, rotation=45)
   plt.yticks(tick_marks, classes)
 
-  fmt = '.0f' if normalize else 'd'
+  fmt = '.1f' if normalize else 'd'
   thresh = cm.max() / 2.
   for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
       plt.text(j, i, format(cm[i, j], fmt),
@@ -96,3 +96,10 @@ plot_confusion_matrix(cnf_matrix, classes=class_names,
 plt.figure()
 plot_confusion_matrix(cnf_matrix, classes=class_names, normalize=True,
                       title='Normalized confusion matrix')
+
+rightpred = 0
+for index in range(len(cnf_matrix)):
+    rightpred += cnf_matrix[index,index]
+
+print("Total test accuracy: " + str(format(rightpred/sum(sum(cnf_matrix)), '.4f')))
+    
