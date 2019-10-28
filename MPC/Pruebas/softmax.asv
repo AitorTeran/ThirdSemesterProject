@@ -1,0 +1,7 @@
+
+
+v=[3;2;9;0.8;7];
+y=zeros(length(v),1);
+y=exp(v)/exp(sum(v))
+sum(y)
+a=exp(v)
