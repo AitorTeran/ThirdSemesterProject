@@ -78,10 +78,10 @@ train = train.sample(frac = 1)  #Takes frac percentage of the data (in this case
 history = model.fit(        #Train the model with the characteristics listed below.
         x = train[features].to_numpy(), #Input data
         y = train[labels].to_numpy(),   #Target data
-        batch_size = 50,               #Parts in which the dataset is divided into.
+        batch_size = 100,               #Parts in which the dataset is divided into.
 #        validation_split = 0.1,         #What percentage of data is used for validation.
         validation_data = (val[features].to_numpy(), val[labels].to_numpy()),	#Validation data used.
-        epochs = 10                     #How many times the dataset is passed through the neural network.
+        epochs = 30                     #How many times the dataset is passed through the neural network.
         )                    
 #        callbacks = [callbacks]         #Call the function stated before to save tensoflow data.
 
