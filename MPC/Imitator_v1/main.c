@@ -30,8 +30,10 @@ float softmax(float added_weight, float bias, float exponential_sum_of_weights)
 		added_weight -> Contains the sum of weights multiplied by the previous layer values for current neuron.
 		bias -> Contains the bias of the neuron.
 		exponential_sum_of_weights -> Contains the sum of the exp(weights)
+	Output:
+		As an output the value of the neuron is obtained.
     */
-    
+	return exp((added_weight + bias) / exponential_sum_of_weights);
 }
 
 float neural_network(float[INPUT_DATA_SIZE] input_data, float[NEURONS_1][INPUT_DATA_SIZE] weghts1, float[NEURONS_1] biases1, float[NEURONS_2][INPUT_DATA_SIZE] weights2, float[NEURONS_2] biases2)
@@ -79,7 +81,7 @@ float neural_network(float[INPUT_DATA_SIZE] input_data, float[NEURONS_1][INPUT_D
     //Now we can compute the softmax.
     for (i = 0; i++; i < NEURONS_2)
     {
-		layer2[i] = softmax(weights2, softmax_denominator);
+		layer2[i] = softmax(added_weight2[i], biases2[i], softmax_denominator);
     }
 }
 
