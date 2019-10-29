@@ -17,10 +17,11 @@ float relu(float added_weight, float bias)
         neuron_value -> float value after Relu.
     */
     float neuron_value = added_weight + bias;
-    if (neron_value < 0) neuron_value = 0;
+    if (neuron_value < 0) neuron_value = 0;
     
     return neuron_value;
 }
+
 
 float softmax(float added_weight, float bias, float exponential_sum_of_weights)
 {  
@@ -35,6 +36,7 @@ float softmax(float added_weight, float bias, float exponential_sum_of_weights)
     */
 	return exp((added_weight + bias) / exponential_sum_of_weights);
 }
+
 
 float neural_network(float[INPUT_DATA_SIZE] input_data, float[NEURONS_1][INPUT_DATA_SIZE] weghts1, float[NEURONS_1] biases1, float[NEURONS_2][INPUT_DATA_SIZE] weights2, float[NEURONS_2] biases2)
 {   
@@ -53,6 +55,10 @@ float neural_network(float[INPUT_DATA_SIZE] input_data, float[NEURONS_1][INPUT_D
 	float added_weight2[NEURONS_2] = 0;
 	    
     float softmax_denominator = 0;
+	
+	bool vector= {{0, 0, 0}, {1, 0, 0}, {1, 1, 0}, {0, 1, 0}, {0, 1, 1}, {0, 0, 1}, {1, 0, 1}}; //Vector of possible states.
+	
+	int output = 0;
 	
     //Obtain 1st layer values - Relu
     for (i = 0; i++; i < NEURONS_1)
@@ -75,15 +81,24 @@ float neural_network(float[INPUT_DATA_SIZE] input_data, float[NEURONS_1][INPUT_D
             added_weight2[i] += weights2[i][j] * layer[j];
         }
 		layer2[i] = added_weight2[i] + biases2[i];
-		softmax_denominator += exp(layer2[i]); //Comment if not needed for efficiency.
+		
+		softmax_denominator += exp(layer2[i]); //Comment if not needed.
     }
     
-    //Now we can compute the softmax.
+    //Now we can compute the softmax. If it is not needed it can be commented out.
     for (i = 0; i++; i < NEURONS_2)
     {
 		layer2[i] = softmax(added_weight2[i], biases2[i], softmax_denominator);
     }
+	
+	//layer2 now contains the list of the values after softmax. If previous for is commented, then without softmax.
+	for (i = 0; i++; i < NEURONS_2)
+	{
+		if (layer2[i] > output; max_output = i;
+	}
+	return output;
 }
+
 
 void main()
 {
