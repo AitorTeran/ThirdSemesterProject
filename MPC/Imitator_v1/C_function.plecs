@@ -1,0 +1,658 @@
+Plecs {
+  Name          "C_function"
+  Version       "4.2"
+  CircuitModel  "ContStateSpace"
+  StartTime     "0.0"
+  StopTime      "1.0"
+  Timeout       ""
+  Solver        "dopri"
+  MaxStep       "1e-3"
+  InitStep      "-1"
+  FixedStep     "1e-3"
+  Refine        "1"
+  ZCStepSize    "1e-9"
+  RelTol        "1e-3"
+  AbsTol        "-1"
+  TurnOnThreshold "0"
+  SyncFixedStepTasks "2"
+  UseSingleCommonBaseRate "2"
+  LossVariableLimitExceededMsg "3"
+  NegativeSwitchLossMsg "3"
+  DivisionByZeroMsg "3"
+  StiffnessDetectionMsg "2"
+  MaxConsecutiveZCs "1000"
+  AlgebraicLoopWithStateMachineMsg "3"
+  AssertionAction "1"
+  InitializationCommands ""
+  InitialState  "1"
+  SystemState   ""
+  CodeGenParameterInlining "2"
+  CodeGenInliningExceptions "AAAACwAAAAAA"
+  CodeGenFloatingPointFormat "2"
+  CodeGenAbsTimeUsageMsg "3"
+  CodeGenBaseName ""
+  CodeGenOutputDir ""
+  CodeGenExtraOpts ""
+  CodeGenTarget "Generic"
+  CodeGenTargetSettings ""
+  ExtendedMatrixPrecision "1"
+  MatrixSignificanceCheck "2"
+  EnableStateSpaceSplitting "2"
+  DisplayStateSpaceSplitting "1"
+  DiscretizationMethod "2"
+  ExternalModeSettings ""
+  AlgebraicLoopMethod "1"
+  AlgebraicLoopTolerance "1e-6"
+  Schematic {
+    Location      [1, 30; 767, 776]
+    ZoomFactor    1
+    SliderPosition [0, 0]
+    ShowBrowser   off
+    BrowserWidth  100
+    Component {
+      Type          Subsystem
+      Name          "Sub"
+      Show          on
+      Position      [480, 230]
+      Direction     up
+      Flipped       off
+      Frame         [-85, -45; 85, 45]
+      LabelPosition [0, 0]
+      SampleTime    "-1"
+      CodeGenTarget "Generic"
+      MaskIconFrame on
+      MaskIconOpaque off
+      MaskIconRotates on
+      Terminal {
+        Type          Input
+        Position      [-85, -35]
+        Direction     left
+      }
+      Terminal {
+        Type          Input
+        Position      [-85, -25]
+        Direction     left
+      }
+      Terminal {
+        Type          Input
+        Position      [-85, -15]
+        Direction     left
+      }
+      Terminal {
+        Type          Input
+        Position      [-85, -5]
+        Direction     left
+      }
+      Terminal {
+        Type          Input
+        Position      [-85, 5]
+        Direction     left
+      }
+      Terminal {
+        Type          Input
+        Position      [-85, 15]
+        Direction     left
+      }
+      Terminal {
+        Type          Input
+        Position      [-85, 25]
+        Direction     left
+      }
+      Terminal {
+        Type          Input
+        Position      [-85, 35]
+        Direction     left
+      }
+      Terminal {
+        Type          Output
+        Position      [89, -25]
+        Direction     right
+      }
+      Terminal {
+        Type          Output
+        Position      [89, -35]
+        Direction     right
+      }
+      Schematic {
+        Location      [0, 26; 1536, 780]
+        ZoomFactor    1
+        SliderPosition [0, 0]
+        ShowBrowser   off
+        BrowserWidth  100
+        Component {
+          Type          CScript
+          Name          "C-Script"
+          Show          on
+          Position      [680, 310]
+          Direction     up
+          Flipped       off
+          Parameter {
+            Variable      "NumInputs"
+            Value         "8"
+            Show          off
+          }
+          Parameter {
+            Variable      "NumOutputs"
+            Value         "4"
+            Show          off
+          }
+          Parameter {
+            Variable      "NumContStates"
+            Value         "0"
+            Show          off
+          }
+          Parameter {
+            Variable      "NumDiscStates"
+            Value         "0"
+            Show          off
+          }
+          Parameter {
+            Variable      "NumZCSignals"
+            Value         "0"
+            Show          off
+          }
+          Parameter {
+            Variable      "DirectFeedthrough"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "Ts"
+            Value         "0"
+            Show          off
+          }
+          Parameter {
+            Variable      "Parameters"
+            Value         ""
+            Show          off
+          }
+          Parameter {
+            Variable      "LangStandard"
+            Value         "2"
+            Show          off
+          }
+          Parameter {
+            Variable      "GnuExtensions"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "RuntimeCheck"
+            Value         "2"
+            Show          off
+          }
+          Parameter {
+            Variable      "Declarations"
+            Value         "/* Weights and biases */\n\n#include <stdio.h>\n#in"
+"clude <math.h>\n\n#define INPUT_DATA_SIZE 8\n#define NEURONS_1 15\n#define NE"
+"URONS_2 7\n\n\nfloat relu(float added_weight, float bias)\n{\n    /*\n       "
+" Obtain a value after Relu.\n    Input:  \n        added_weight -> Contains t"
+"he sum of weights multiplied by the previous layer values for current neuron."
+"\n        bias -> Contains the bias of the neuron.\n    Output: \n        neu"
+"ron_value -> float value after Relu.\n    */\n    float neuron_value = added_"
+"weight + bias;\n    if (neuron_value < 0) neuron_value = 0;\n    \n    return"
+" neuron_value;\n}\n\n\nfloat softmax(float added_weight, float bias, float ex"
+"ponential_sum_of_weights)\n{  \n    /*\n        Obtain the value of layer aft"
+"er Softmax\n\tInput: \n\t\tadded_weight -> Contains the sum of weights multip"
+"lied by the previous layer values for current neuron.\n\t\tbias -> Contains t"
+"he bias of the neuron.\n\t\texponential_sum_of_weights -> Contains the sum of"
+" the exp(weights)\n\tOutput:\n\t\tAs an output the value of the neuron is obt"
+"ained.\n    */\n\treturn exp((added_weight + bias) / exponential_sum_of_weigh"
+"ts);\n}\n\n\nfloat weights1[15][8] = {\n\t{-1.91948175430298, 0.0449521131813"
+"526, 0.0438090600073338, -0.0462818741798401, 0.180528149008751, 0.0828501358"
+"628273, 0.267583429813385, 0.0511482730507851},\n\t{0.00540332403033972, -0.0"
+"0152919255197048, 0.00943523086607456, -0.00829389132559300, -0.0213642437011"
+"004, 0.00102618627715856, -0.000436690228525549, -15.6250047683716},\n\t{-0.5"
+"35816490650177, -2.85496234893799, 4.99901342391968, -0.293968528509140, 0.50"
+"5374789237976, 0.0513323396444321, -0.267495602369308, 2.76592898368835},\n\t"
+"{-0.988217473030090,\t0.0200615283101797,\t-0.0285902861505747, 0.02990782074"
+"63026, -0.00619316659867764, -0.0541120879352093, -0.0223134718835354, 0.0151"
+"482410728931},\n\t{-1.81566703319550, 0.118106029927731, -0.0932439267635346,"
+" 0.00759628461673856, -0.0262096635997295, 0.210742354393005, -0.165930062532"
+"425, 0.256771713495255},\n\t{-0.00292166904546320, 0.0147425234317780, 0.0003"
+"21264786180109,\t-0.00180450512561947, -0.00283740111626685,\t-9.583174687577"
+"41e-05, -0.000534764258190990, 6.35257101058960},\n\t{-2.58911561965942, -0.3"
+"39295715093613, -0.0433894544839859,\t-0.176581606268883, 0.00011973644723184"
+"4, 0.424262791872025, 0.126935511827469, 0.208173707127571},\n\t{0.0056635192"
+"5954223, 0.00158449367154390, 0.00552282761782408, 0.000815536710433662, -0.0"
+"0259980326518416, -2.61136046901811e-05, -3.83368969778530e-05, -8.2471160888"
+"6719},\n\t{-2.12153911590576, -0.00827347952872515, 0.107570946216583,\t-0.01"
+"08017604798079, 0.0274957027286291, -0.225702628493309, 0.233485102653503, 0."
+"0919283106923103},\n\t{0.519232809543610, 2.77015352249146, -4.88255405426025"
+", 0.284672945737839, -0.501610159873962, -0.0505958646535873, 0.2591968178749"
+"08, -2.74410200119019},\n\t{1.05519020557404, -0.0280285067856312, 0.12405721"
+"8432426, -0.00796725694090128, 0.0531477257609367,\t0.0277432538568974, 0.165"
+"130481123924, -0.218090191483498},\n\t{-2.66488027572632, -0.0041434206068515"
+"8, 0.0332266166806221, -0.0135419256985188, -0.0145537750795484, -0.250930458"
+"307266, -0.0734047666192055, -0.139348760247231},\n\t{1.71432948112488, -3.22"
+"114562988281, -1.56696355342865, -0.305091232061386,\t-0.168205693364143,\t0."
+"102232828736305, 0.0612738095223904, -2.37462425231934},\n\t{1.33318054676056"
+", 3.16283941268921,\t1.67610108852386, 0.320618689060211, 0.160780534148216, "
+"-0.108131147921085, -0.0473062843084335, 5.92322731018066},\n\t{-0.0025347482"
+"8787148, -0.00666272733360529,\t-0.00293712923303247, 0.0124406097456813, -0."
+"0102913565933704, 0.000577962608076632, -0.000662014412228018, 9.679689407348"
+"63}\n\t};\n   \nfloat weights2[7][15] = {\n\t{0.00922166369855404, -0.7364695"
+"66822052, -0.443249434232712, -0.0985636860132217, 0.0475424751639366, -1.034"
+"50405597687, 0.115020625293255, -0.296683132648468, -0.200633943080902, -0.35"
+"8296155929565, 0.153595134615898, -0.138984784483910, -0.220603793859482, -0."
+"247061789035797, -0.159679859876633},\n\t{0.196193978190422, 2.30333733558655"
+", 0.0849599987268448, -0.889623761177063, 0.471246629953384, -4.8120460510253"
+"9, 0.536885976791382, -3.65386343002319, -0.385421037673950, -0.9169809818267"
+"82, 0.315443515777588, -0.490813672542572, 0.653196036815643, -1.126590132713"
+"32, 0.197004720568657},\n\t{0.468878865242004, -0.411055624485016, -1.0469826"
+"4598846, -0.837181150913239, 0.00198120996356010, -6.99609661102295, 0.415518"
+"403053284, -0.221565008163452, 0.0296953953802586, 0.241393104195595, -0.3820"
+"75011730194, -0.400407254695892, 0.642966568470001, -1.12067067623138, 3.2547"
+"8315353394},\n\t{0.274929076433182, -3.69646167755127, -1.63324129581451, -0."
+"0240388158708811, -0.438953787088394, -3.18095040321350, -0.0117290159687400,"
+" 3.37234854698181, 0.204838231205940, 0.845981061458588, -0.565405189990997, "
+"0.00547822797670960, -0.254912793636322, -0.217077821493149, 2.96186017990112"
+"},\n\t{-0.195473909378052, -3.79436469078064, -0.982209146022797, 0.692139685"
+"153961, -0.385884046554565, 2.74288153648376, -0.299654871225357, 3.064895391"
+"46423, -0.0628745853900909, 0.182673096656799, -0.00998471304774284, 0.242607"
+"071995735, -1.09513008594513, 0.635130345821381, -0.594200730323792},\n\t{-0."
+"487812817096710, -1.04654288291931, 0.158849045634270, 0.642426609992981, 0.0"
+"866966173052788, 4.93090248107910, -0.184638693928719, -0.359105259180069, -0"
+".486547291278839, -1.00200784206390, 0.687201976776123, 0.113828562200069, -1"
+".09236168861389, 0.621423006057739, -3.65371298789978},\n\t{-0.28243175148963"
+"9, 2.18215203285217, 0.742475330829620, -0.180282711982727, 0.535414397716522"
+", 1.12092006206512, 0.248138025403023, -3.93348932266235, -0.648099005222321,"
+" -1.58847463130951, 0.876032352447510, -0.253484725952148, -0.187837809324265"
+", -0.285763740539551, -3.32898521423340}\n\t};\n   \nfloat biases1[15] = {24."
+"3151683807373, 34.2019157409668, 25.5020351409912, 34.9622192382813, 23.38980"
+"10253906, -35.6600151062012, 9.39764881134033, 36.9644317626953, 17.724285125"
+"7324, -24.6286945343018, -7.19691181182861, 22.0097599029541, 15.052515029907"
+"2, 1.14544308185577, -32.1283531188965};\n   \nfloat biases2[7] = {8.00949573"
+"516846, 8.72856044769287, -4.86000490188599, -15.2951650619507, -9.9575405120"
+"8496, 4.24163341522217, 13.9856166839600}; \n\n\n"
+            Show          off
+          }
+          Parameter {
+            Variable      "StartFcn"
+            Value         ""
+            Show          off
+          }
+          Parameter {
+            Variable      "OutputFcn"
+            Value         "// ***** INPUT DATA *****\n//Read input data:\n//in"
+"put_data = [R1, i_meas_alpha, i_meas_beta, delta_Vc_alpha, delta_Vc_beta, v_r"
+"ef_alpha, v_ref_beta, x_old]\n//weights1 = 15x8 matrix where rows are neurons"
+" and columns are input_variables.\n//biases1 = 15x1 vector with biases. Each "
+"neuron has only one bias.\n//wights2 and biases2 work in a similar fashion.\n"
+"//Initialize layers.\nfloat layer1[NEURONS_1];\nfloat layer2[NEURONS_2];\n\n/"
+"/Initialize aux variable for neuron calculation.\nfloat added_weight1[NEURONS"
+"_1];\nfloat added_weight2[NEURONS_2];\n\t\n//Initialize aux variable for soft"
+"max.\n//float softmax_denominator = 0;\n\n//Initialize other aux.\nint i = 0;"
+"\nint j = 0;\nfloat x = 0; //Variable used for finding maximum state.\n\n//In"
+"itialize vector with states.\nint vector[7][3]= {{0, 0, 0}, {1, 0, 0}, {1, 1,"
+" 0}, {0, 1, 0}, {0, 1, 1}, {0, 0, 1}, {1, 0, 1}}; //Vector of possible states"
+".\n\n//Initialize output variable.\nint state = 0;\n\n//Input data values.\nf"
+"loat R1 = InputSignal(0,0);\nfloat i_meas_alpha = InputSignal(1,0);\nfloat i_"
+"meas_beta = InputSignal(2,0);\nfloat delta_Vc_alpha = InputSignal(3,0);\nfloa"
+"t delta_Vc_beta = InputSignal(4,0);\nfloat v_ref_alpha = InputSignal(5,0);\nf"
+"loat v_ref_beta = InputSignal(6,0);\nfloat x_old = InputSignal(7,0);\n\n\nflo"
+"at input_data[INPUT_DATA_SIZE] = {R1, i_meas_alpha, i_meas_beta, delta_Vc_alp"
+"ha, delta_Vc_beta, v_ref_alpha, v_ref_beta, x_old};\n\n\n//Obtain 1st layer v"
+"alues - Relu\nfor (i = 0; i++; i < NEURONS_1)\n{\n\tfor (j = 0; j++; j < INPU"
+"T_DATA_SIZE)\n\t{\n\t\tadded_weight1[i] += weights1[i][j] * input_data[j];\n"
+"\t}\n\tlayer1[i] += relu(added_weight1[i], biases1[j]);\n}\n\n\n//Obtain 2nd "
+"layer values - Softmax\n\n//In this case we need to obtain the denominator, s"
+"um of all exp of the values.\nfor (i = 0; i++; i < NEURONS_2)\n{\n\tfor (j = "
+"0; j++; j < NEURONS_1)\n\t{\n\t\tadded_weight2[i] += weights2[i][j] * layer2["
+"j];\n\t}\n\tlayer2[i] = added_weight2[i] + biases2[i];\n\t\n\t// softmax_deno"
+"minator += exp(layer2[i]); //Comment if not needed.\n}\n\n//Now we can comput"
+"e the softmax. If it is not needed it can be commented out.\n/*for (i = 0; i+"
+"+; i < NEURONS_2)\n{\n\tlayer2[i] = softmax(added_weight2[i], biases2[i], sof"
+"tmax_denominator);\n}*/\n\n//layer2 now contains the list of the values after"
+" softmax. If previous for is commented, then without softmax.\nfor (i = 0; i+"
+"+; i < NEURONS_2)\n{\n\tif (layer2[i] > x) \n\t{\n\t\tx = layer2[i];\n\t\tsta"
+"te = i;\n\t}\n}\n\n\nOutputSignal(0,0) = vector[state][0];\nOutputSignal(0,1)"
+" = vector[state][1];\nOutputSignal(0,2) = vector[state][2];\nOutputSignal(0,3"
+") = state;\n"
+            Show          off
+          }
+          Parameter {
+            Variable      "UpdateFcn"
+            Value         ""
+            Show          off
+          }
+          Parameter {
+            Variable      "DerivativeFcn"
+            Value         ""
+            Show          off
+          }
+          Parameter {
+            Variable      "TerminateFcn"
+            Value         ""
+            Show          off
+          }
+        }
+        Component {
+          Type          SignalMux
+          Name          "Mux1"
+          Show          off
+          Position      [560, 310]
+          Direction     right
+          Flipped       off
+          Parameter {
+            Variable      "Width"
+            Value         "8"
+            Show          off
+          }
+        }
+        Component {
+          Type          SignalDemux
+          Name          "Demux"
+          Show          off
+          Position      [795, 310]
+          Direction     right
+          Flipped       on
+          Parameter {
+            Variable      "Width"
+            Value         "4"
+            Show          off
+          }
+        }
+        Component {
+          Type          Input
+          Name          "R1"
+          Show          on
+          Position      [300, 275]
+          Direction     right
+          Flipped       off
+          Parameter {
+            Variable      "Index"
+            Value         "1"
+            Show          on
+          }
+          Parameter {
+            Variable      "Width"
+            Value         "-1"
+            Show          off
+          }
+        }
+        Component {
+          Type          Input
+          Name          "i_meas_alpha"
+          Show          on
+          Position      [360, 285]
+          Direction     right
+          Flipped       off
+          Parameter {
+            Variable      "Index"
+            Value         "2"
+            Show          on
+          }
+          Parameter {
+            Variable      "Width"
+            Value         "-1"
+            Show          off
+          }
+        }
+        Component {
+          Type          Input
+          Name          "i_meas_beta"
+          Show          on
+          Position      [420, 295]
+          Direction     right
+          Flipped       off
+          Parameter {
+            Variable      "Index"
+            Value         "3"
+            Show          on
+          }
+          Parameter {
+            Variable      "Width"
+            Value         "-1"
+            Show          off
+          }
+        }
+        Component {
+          Type          Input
+          Name          "delta_Vc_alpha"
+          Show          on
+          Position      [480, 305]
+          Direction     right
+          Flipped       off
+          Parameter {
+            Variable      "Index"
+            Value         "4"
+            Show          on
+          }
+          Parameter {
+            Variable      "Width"
+            Value         "-1"
+            Show          off
+          }
+        }
+        Component {
+          Type          Input
+          Name          "delta_Vc_beta"
+          Show          on
+          Position      [300, 315]
+          Direction     right
+          Flipped       off
+          Parameter {
+            Variable      "Index"
+            Value         "5"
+            Show          on
+          }
+          Parameter {
+            Variable      "Width"
+            Value         "-1"
+            Show          off
+          }
+        }
+        Component {
+          Type          Input
+          Name          "v_ref_alpha"
+          Show          on
+          Position      [360, 325]
+          Direction     right
+          Flipped       off
+          Parameter {
+            Variable      "Index"
+            Value         "6"
+            Show          on
+          }
+          Parameter {
+            Variable      "Width"
+            Value         "-1"
+            Show          off
+          }
+        }
+        Component {
+          Type          Input
+          Name          "v_ref_beta"
+          Show          on
+          Position      [420, 335]
+          Direction     right
+          Flipped       off
+          Parameter {
+            Variable      "Index"
+            Value         "7"
+            Show          on
+          }
+          Parameter {
+            Variable      "Width"
+            Value         "-1"
+            Show          off
+          }
+        }
+        Component {
+          Type          Input
+          Name          "x_old_in"
+          Show          on
+          Position      [480, 345]
+          Direction     right
+          Flipped       off
+          Parameter {
+            Variable      "Index"
+            Value         "8"
+            Show          on
+          }
+          Parameter {
+            Variable      "Width"
+            Value         "-1"
+            Show          off
+          }
+        }
+        Component {
+          Type          Output
+          Name          "SW_out"
+          Show          on
+          Position      [915, 295]
+          Direction     right
+          Flipped       off
+          Parameter {
+            Variable      "Index"
+            Value         "9"
+            Show          on
+          }
+          Parameter {
+            Variable      "Width"
+            Value         "-1"
+            Show          off
+          }
+        }
+        Component {
+          Type          SignalMux
+          Name          "Mux2"
+          Show          off
+          Position      [855, 305]
+          Direction     right
+          Flipped       off
+          Parameter {
+            Variable      "Width"
+            Value         "3"
+            Show          off
+          }
+        }
+        Component {
+          Type          Output
+          Name          "x_old_out"
+          Show          on
+          Position      [915, 325]
+          Direction     right
+          Flipped       off
+          Parameter {
+            Variable      "Index"
+            Value         "10"
+            Show          on
+          }
+          Parameter {
+            Variable      "Width"
+            Value         "-1"
+            Show          off
+          }
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Mux1"
+          SrcTerminal   1
+          DstComponent  "C-Script"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "C-Script"
+          SrcTerminal   2
+          DstComponent  "Demux"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "R1"
+          SrcTerminal   1
+          DstComponent  "Mux1"
+          DstTerminal   2
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "i_meas_alpha"
+          SrcTerminal   1
+          DstComponent  "Mux1"
+          DstTerminal   3
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "i_meas_beta"
+          SrcTerminal   1
+          DstComponent  "Mux1"
+          DstTerminal   4
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "delta_Vc_alpha"
+          SrcTerminal   1
+          DstComponent  "Mux1"
+          DstTerminal   5
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "delta_Vc_beta"
+          SrcTerminal   1
+          DstComponent  "Mux1"
+          DstTerminal   6
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "v_ref_beta"
+          SrcTerminal   1
+          DstComponent  "Mux1"
+          DstTerminal   8
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "x_old_in"
+          SrcTerminal   1
+          DstComponent  "Mux1"
+          DstTerminal   9
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "v_ref_alpha"
+          SrcTerminal   1
+          DstComponent  "Mux1"
+          DstTerminal   7
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Demux"
+          SrcTerminal   2
+          DstComponent  "Mux2"
+          DstTerminal   2
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Demux"
+          SrcTerminal   3
+          DstComponent  "Mux2"
+          DstTerminal   3
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Demux"
+          SrcTerminal   4
+          DstComponent  "Mux2"
+          DstTerminal   4
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Demux"
+          SrcTerminal   5
+          DstComponent  "x_old_out"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Mux2"
+          SrcTerminal   1
+          Points        [875, 305; 875, 295]
+          DstComponent  "SW_out"
+          DstTerminal   1
+        }
+      }
+    }
+  }
+}
