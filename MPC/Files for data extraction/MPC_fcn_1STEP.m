@@ -1,7 +1,10 @@
-function [vector, vref_alpha, vref_beta] = MPC_fcn(time, vc_alpha, vc_beta,if_alpha, if_beta, R, x_opt_old, v, states, Adf, Bdf, C, wref )
+%FOR 1 STEP HORIZON (FOR ONLY FROM 1 TO 7 OPTIONS AND COST FUNCTION FROM
+%ONE CHOICE ONLY)
+
+function [vector, vref_alpha, vref_beta] = MPC_fcn_1STEP(time, vc_alpha, vc_beta,if_alpha, if_beta, R, x_opt_old, v, states, Adf, Bdf, C, wref )
 
 g = zeros(1,7);
-weight1 = 3; 
+weight1 = 1; 
 vector = zeros(7,1);
 vref_alpha=325*sin(2*pi*50*time);
 vref_beta=325*sin(2*pi*50*time-3*pi/2);
@@ -18,7 +21,7 @@ v_ref_old = vref_alpha1 + 1j*vref_beta1;
 v_ref_old2 = vref_alpha2 + 1j*vref_beta2;
 
 
-v_ref1= 3*v_ref - 3*v_ref_old +v_ref_old2;
+v_ref1= 3*v_ref - 3*v_ref_old +v_ref_old2; %1 step horizon, with lagrange 2 steps ahead reference is calculated.
 
 v_meas = vref_alpha + vc_alpha + 1j*(vref_beta+vc_beta);
 i_load = (vref_alpha + vc_alpha)/R + 1j*(vref_beta+vc_beta)/R;

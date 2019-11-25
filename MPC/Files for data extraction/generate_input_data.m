@@ -49,8 +49,8 @@ vector = zeros(7, iterations);
 tic
 
  parfor i=1:iterations
-     
-    [vector(:,i), vref_alpha1(i), vref_beta1(i)] = MPC_fcn(time1(i), vc_alpha1(i), vc_beta1(i), if_alpha1(i), if_beta1(i), R1(i), x_opt_old1(i), v,states, Adf, Bdf, C, wref);
+     %change the name of the MPC file for 1, 2, 3 steps horizon
+    [vector(:,i), vref_alpha1(i), vref_beta1(i)] = MPC_fcn_1STEP(time1(i), vc_alpha1(i), vc_beta1(i), if_alpha1(i), if_beta1(i), R1(i), x_opt_old1(i), v,states, Adf, Bdf, C, wref);
  end
  
 if_alpha1=if_alpha1';
