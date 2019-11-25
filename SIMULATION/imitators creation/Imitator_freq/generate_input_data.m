@@ -21,9 +21,9 @@ vc_beta = -5:1:5;
 if_alpha=-16:2:16;
 if_beta=-16:2:16;
 
-R = 30:10:60;
+R = 30:15:60;
 
-wref = 0:20:100;
+wref = [50,60];
 
 %if_alpha=14*sin(2*pi*50*time);
 %if_beta=14*sin(2*pi*50*time-3*pi/2);

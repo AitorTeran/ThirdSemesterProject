@@ -36,7 +36,7 @@ vc_beta =  rand(1, number_test_data)*10-5;
 if_alpha = rand(1, number_test_data)*32-16;
 if_beta = rand(1, number_test_data)*32-16;
 R = rand(1, number_test_data)*30+30;
-wref = rand(1, number_test_data)*100;
+wref = round(rand(1, number_test_data))*10+50;
 
 %%
 tic

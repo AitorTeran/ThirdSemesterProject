@@ -3,6 +3,7 @@ function [vector, vref_alpha, vref_beta] = MPC_fcn(time, vc_alpha, vc_beta,if_al
 g = zeros(1,7);
 weight1 = 3; 
 vector = zeros(7,1);
+wref = 2*pi*wref;
 vref_alpha=325*sin(wref*time);
 vref_beta=325*sin(wref*time-3*pi/2);
 
