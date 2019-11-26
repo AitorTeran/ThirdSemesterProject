@@ -38,7 +38,7 @@ features = ['R1',
 
 
 #%% Make predictions on test data
-model = keras.models.load_model("./savedmodel.h5")
+model = keras.models.load_model("./7278_9285.h5")
 predictions = model.predict(test[features])
 
 

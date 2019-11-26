@@ -26,4 +26,4 @@ grid
 
 pos = get(fig,'Position');
 set(fig,'PaperPositionMode','Auto','PaperUnits','points','PaperSize',[pos(3), pos(4)])
-print(fig,'Weight_factor_vs_THD','-dpdf','-r0') %save figure in pdf
+print(fig,'Weight_factor_vs_THD','-dpdf','-fillpage') %save figure in pdf
