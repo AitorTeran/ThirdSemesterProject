@@ -59,10 +59,10 @@ features = ['R1',
 
 
 #TRAINING THE MODEL.
-for neuron_num in range(30):
+for neuron_num in range(30,40):
     for iterations in range(5):    
         model = tf.keras.Sequential()   #Create a sequential model, linear stack of layers.
-        model.add(tf.keras.layers.Dense(neuron_num+1, activation='relu', input_dim = 8)) 
+        model.add(tf.keras.layers.Dense(neuron_num, activation='relu', input_dim = 8)) 
         model.add(tf.keras.layers.Dense(7, activation='softmax')) 
         
         model.compile(optimizer='adam',                 #Other optimizers found at https://keras.io/optimizers/
@@ -85,4 +85,4 @@ for neuron_num in range(30):
         #        validation_split = 0.1,         #What percentage of data is used for validation.
         #        callbacks = [callbacks]         #Call the function stated before to save tensoflow data.
         
-        model.save('./7'+str(neuron_num+1)+'8_'+str(history.history['val_acc'])[3:7]+'.h5')   #Save the model.
+        model.save('./'+str(neuron_num)+'_'+str(history.history['val_acc'])[3:7]+'.h5')   #Save the model.
