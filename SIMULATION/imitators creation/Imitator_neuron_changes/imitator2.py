@@ -59,7 +59,7 @@ features = ['R1',
 
 
 #TRAINING THE MODEL.
-for neuron_num in (23,25,27,30,35,40,45,50,60):
+for neuron_num in (11,16,19):
     for iterations in range(1):    
         model = tf.keras.Sequential()   #Create a sequential model, linear stack of layers.
         model.add(tf.keras.layers.Dense(neuron_num, activation='relu', input_dim = 8)) 
