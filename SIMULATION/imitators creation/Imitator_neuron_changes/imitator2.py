@@ -59,8 +59,8 @@ features = ['R1',
 
 
 #TRAINING THE MODEL.
-for neuron_num in (1,2):
-    for iterations in range(3):    
+for neuron_num in (23,25,27,30,35,40,45,50,60):
+    for iterations in range(1):    
         model = tf.keras.Sequential()   #Create a sequential model, linear stack of layers.
         model.add(tf.keras.layers.Dense(neuron_num, activation='relu', input_dim = 8)) 
         model.add(tf.keras.layers.Dense(7, activation='softmax')) 
@@ -80,9 +80,10 @@ for neuron_num in (1,2):
                 y = train[labels].to_numpy(),   #Target data
                 batch_size = 100,                #Parts in which the dataset is divided into.
                 validation_data = (val[features].to_numpy(), val[labels].to_numpy()),	#Validation data used.
-                epochs = 1)                     #How many times the dataset is passed through the neural network.
+                epochs = 10)                     #How many times the dataset is passed through the neural network.
                               
         #        validation_split = 0.1,         #What percentage of data is used for validation.
         #        callbacks = [callbacks]         #Call the function stated before to save tensoflow data.
         
-        model.save('./'+str(neuron_num)+'_'+str(history.history['val_acc'])[3:7]+'.h5')   #Save the model.
+
+        model.save('./'+str(neuron_num)+'_'+str(history.history['acc'][-1])[2:6]+'_'+str(history.history['val_acc'][-1])[2:6]+'.h5')   #Save the model.
