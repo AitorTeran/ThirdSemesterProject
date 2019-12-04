@@ -59,7 +59,7 @@ features = ['R1',
 
 
 #TRAINING THE MODEL.
-for neuron_num in (30,32,35,40):
+for neuron_num in (16,19,20,22,23,24,26,28,29,31,400,750):
     for iterations in range(1):    
         model = tf.keras.Sequential()   #Create a sequential model, linear stack of layers.
         model.add(tf.keras.layers.Dense(neuron_num, activation='relu', input_dim = 8)) 
@@ -86,4 +86,4 @@ for neuron_num in (30,32,35,40):
         #        callbacks = [callbacks]         #Call the function stated before to save tensoflow data.
         
 
-        model.save('./'+str(neuron_num)+'_'+str(history.history['acc'][-1])[2:6]+'_'+str(history.history['val_acc'][-1])[2:6]+'.h5')   #Save the model.
+        model.save('./'+str(neuron_num)+'_'+str(history.history['acc'][-1])[2:6]+'_'+str(history.history['val_acc'][-1])[2:7]+'.h5')   #Save the model.
