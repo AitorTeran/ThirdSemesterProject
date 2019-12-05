@@ -14,10 +14,7 @@ list_of_names = []
 for file in os.listdir("./"):
     if file.endswith(".h5"):
         list_of_names.append(os.path.join("./", file))
-        if int(file[-11:-9]) > 70:
-            neuron_num.append(int(file[-10:-9]))
-        else:
-            neuron_num.append(int(file[-11:-9]))
+        neuron_num.append(int(file[-15:-13]))
         
 
       
