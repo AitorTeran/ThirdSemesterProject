@@ -44,6 +44,15 @@ grid
 %orange [0.8500, 0.3250, 0.0980]
 %yellow [0.9290, 0.6940, 0.1250]
 %%
+ax = gca;
+outerpos = ax.OuterPosition;
+ti = ax.TightInset; 
+left = outerpos(1) + ti(1);
+bottom = outerpos(2) + ti(2);
+ax_width = outerpos(3) - ti(1) - ti(3);
+ax_height = outerpos(4) - ti(2) - ti(4);
+ax.Position = [left bottom ax_width ax_height];
+
 pos = get(fig,'Position');
 set(fig,'PaperPositionMode','Auto','PaperUnits','points','PaperSize',[pos(3), pos(4)])
 print(fig,'Test_accuracy_vs_neurons_detail','-dpdf','-fillpage') %save figure in pdf
