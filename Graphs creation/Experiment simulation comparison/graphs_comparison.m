@@ -41,7 +41,7 @@ ax.Position = [left bottom ax_width ax_height];
 
 pos = get(fig,'Position');
 set(fig,'PaperPositionMode','Auto','PaperUnits','points','PaperSize',[pos(3), pos(4)])
-print(fig,'MPC_step1_steady60','-dpdf','-fillpage') %save figure in pdf
+print(fig,'NN_step1_steady60','-dpdf','-fillpage') %save figure in pdf
 
 %%
 experimental = readmatrix('MPC_step1_Steady60_THD_tek0006.csv');
