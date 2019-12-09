@@ -151,9 +151,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="347.46099"
-     inkscape:cy="647.82878"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="208.76671"
+     inkscape:cy="675.01494"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -627,7 +627,7 @@
        inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
-       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11666656px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#494949;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1;"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11666656px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#494949;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1"
        x="100.50905"
        y="143.35571"
        id="text4430-7-1-1"><tspan
@@ -635,11 +635,11 @@
          id="tspan4428-2-6-3"
          x="100.50905"
          y="143.35571"
-         style="font-size:2.11666656px;baseline-shift:sub;fill:#494949;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1;"><tspan
-           style="font-size:3.17499995px;fill:#494949;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1;"
-           id="tspan15607-0">V</tspan><tspan
+         style="font-size:2.11666656px;baseline-shift:sub;fill:#494949;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1"><tspan
+           style="font-size:3.17499995px;fill:#494949;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1"
+           id="tspan15607-0">Vf</tspan><tspan
            id="tspan15605-4"
-           style="fill:#494949;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1;">i</tspan></tspan></text>
+           style="fill:#494949;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1" /></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11666656px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#494949;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1;"
@@ -688,11 +688,9 @@
          id="tspan4428-2-9-1"
          x="116.45315"
          y="130.09378"
-         style="font-size:2.11666656px;baseline-shift:sub;fill:#494949;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1"><tspan
-           style="font-size:3.17499995px;fill:#494949;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1"
-           id="tspan16327-6">i</tspan><tspan
-           id="tspan16324-2"
-           dy="0.74000007">f</tspan></tspan></text>
+         style="font-size:3.17499995px;baseline-shift:sub;fill:#494949;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1">i<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan1277">i</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.17499995px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#494949;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1"
@@ -850,11 +848,11 @@
        id="path7383-1-9-2"
        inkscape:connector-curvature="0" />
     <rect
-       style="opacity:0.194;fill:#cc0404;fill-opacity:0.5511111;stroke:#fc1b00;stroke-width:0.16500001;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:0.194;fill:#cc0404;fill-opacity:0.55111108;stroke:#fc1b00;stroke-width:0.16500001;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect6283-2-1"
        width="57.581875"
        height="23.8125"
-       x="93.502869"
-       y="127.15513" />
+       x="93.636505"
+       y="127.15512" />
   </g>
 </svg>
