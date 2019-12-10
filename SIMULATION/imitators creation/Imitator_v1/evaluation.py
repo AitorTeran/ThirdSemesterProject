@@ -59,6 +59,8 @@ def plot_confusion_matrix(cm, classes,
       print('\nConfusion matrix, without normalization')
   print(cm)
   print ()
+  
+
 
   plt.imshow(cm, interpolation='nearest', cmap=cmap)
   plt.title(title)
@@ -88,18 +90,26 @@ np.set_printoptions(precision=2) # set NumPy to 2 decimal places
 
 # Plot non-normalized confusion matrix
 class_names = ['State 1', 'State 2', 'State 3', 'State 4', 'State 5', 'State 6', 'State 7']
+
 plt.figure()
 plot_confusion_matrix(cnf_matrix, classes=class_names,
                       title='Confusion matrix, without normalization')
 
 # Plot normalized confusion matrix
-plt.figure()
+
+f = plt.figure()
 plot_confusion_matrix(cnf_matrix, classes=class_names, normalize=True,
                       title='Normalized confusion matrix')
+f.savefig("ConfusionMatrix.pdf", bbox_inches='tight')
+
+#df.savefig("ConfusionMatrix.pdf", bbox_inches='tight')
 
 rightpred = 0
 for index in range(len(cnf_matrix)):
     rightpred += cnf_matrix[index,index]
+    
+# Save plot to PDF
+
 
 print("Total test accuracy: " + str(format(rightpred/sum(sum(cnf_matrix)), '.4f')))
     
