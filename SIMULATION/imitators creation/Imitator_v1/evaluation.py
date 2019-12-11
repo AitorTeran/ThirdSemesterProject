@@ -38,8 +38,11 @@ features = ['R1',
 
 
 #%% Make predictions on test data
-model = keras.models.load_model("./model_9796.h5")
+#model = keras.models.load_model("./model_9796.h5")
+#model = keras.models.load_model("./2step_9710.h5")
+model = keras.models.load_model("./3step_9757.h5")
 predictions = model.predict(test[features])
+
 
 
 #%% Calculate and show confusion matrix 
