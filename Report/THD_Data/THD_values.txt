@@ -1,0 +1,18 @@
+Voltage:
+
+100V - 
+200V - 
+300V - 
+
+
+Freq MPC:
+
+20Hz - 
+40Hz -
+50Hz - 
+60Hz -
+80Hz -
+
+Freq ANN:
+
+40Hz - 
