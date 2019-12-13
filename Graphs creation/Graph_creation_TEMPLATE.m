@@ -6,10 +6,10 @@ set(groot, 'defaultAxesTickLabelInterpreter','latex');
 set(groot, 'defaultLegendInterpreter','latex');
 
 %Load data
-neurons=xlsread('neuron_changes','neuron_change','G3:G47');
-train_error=xlsread('neuron_changes','neuron_change','L3:L47');
-test_error=xlsread('neuron_changes','neuron_change','M3:M47');
-THD=xlsread('neuron_changes','neuron_change','K3:K47');
+weighting_factor=xlsread('Training_results','THD_varying_weight','A5:A13');
+%train_error=xlsread('neuron_changes','neuron_change','L3:L47');
+THD=xlsread('Training_results','THD_varying_weight','B5:B13');
+%test_error=xlsread('neuron_changes','neuron_change','K3:K47');
 
 %%
 close all
@@ -19,21 +19,21 @@ close all
 
 
 fig=figure(1)
-plot(neurons,train_error, 'Color',[0.9290, 0.6940, 0.1250], 'LineWidth',1)
-hold on
-plot(neurons,test_error, 'Color',[0.8500, 0.3250, 0.0980], 'LineWidth',1)
-hold on
-plot(neurons,THD, 'Color',[0, 0.4470, 0.7410], 'LineWidth',1)
+plot(weighting_factor,THD, 'Color',[0, 0.4470, 0.7410], 'LineWidth',1)
+%hold on
+%plot(neurons,test_error, 'Color',[0.8500, 0.3250, 0.0980], 'LineWidth',1)
+%hold on
+%plot(neurons,THD, 'Color',[0, 0.4470, 0.7410], 'LineWidth',1)
 
-xlim([1 400])
-ylim([0 30])
+%xlim([1 400])
+%ylim([0 30])
 
-title('Relationship between train error, test error and THD vs number of neurons','fontweight','bold','fontsize',13);
+title('Relationship between THD and weighting factor','fontweight','bold','fontsize',13);
 
-legend('Train error','Test error','THD','location','best');
+%legend('Train error','Test error','THD','location','best');
 
-xlabel('Number of neurons in the intermediate layer','fontsize',11)
-ylabel('Train error [\%], test error [\%], THD [\%]','fontsize',11)%[deg]
+xlabel('Weighting factor $\lambda$','fontsize',11)
+ylabel('THD $[\%]$','fontsize',11)%[deg]
 grid
 
 
