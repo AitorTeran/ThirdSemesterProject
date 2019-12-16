@@ -31,7 +31,7 @@ rectangle('Position',[5 0.4 20 9.6],'Curvature',[0.4,0.1],'LineWidth',1)
 xlim([1 300])
 ylim([0 30])
 
-title('Relationship between train error, test error and THD vs number of neurons','fontweight','bold','fontsize',13);
+title('Network performance against number of neurons','fontweight','bold','fontsize',13);
 
 
 xlabel('Number of neurons in the intermediate layer','fontsize',11)
