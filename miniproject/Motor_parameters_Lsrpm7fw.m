@@ -3,7 +3,7 @@ Vm=45;
 
 
 %PLL Parameters
-Ki_pll=100;
+Ki_pll=2000;
 Kp_pll=10;
 
 wo=10;
@@ -90,14 +90,14 @@ case 1
     
 case 2
     % Tuned by tuning Kp first and then Ki...
-    Ki1          = 2; %2  
-    Kp1          = 0.05;  %0.05
+    Ki1          = 2;  
+    Kp1          = 0.05;
     
-    Ki2          = 10000; %6000
-    Kp2          = 12;  %6
+    Ki2          = 6000;
+    Kp2          = 6;
 
-    Ki3          = 10000;     %6000
-    Kp3          = 12;  %6
+    Ki3          = 6000;     
+    Kp3          = 6;  
     
    
 end
