@@ -1,15 +1,6 @@
-
-Vm=45; %45
-
-
-%PLL Parameters
-Ki_pll=100; %100 %2000
-Kp_pll=100; %10 %10
-
-wo=15; %10
-
-
 % LSRPM motor, 7kW
+
+clear
 
 Vs               = 360;           % max. RMS phase voltage
 Vph              = Vs*sqrt(2);    % [V], peak value, phase voltage
@@ -32,7 +23,7 @@ Tl_const         = Trat/nrat^2;   % Fan load torque constants
 
 
 fs               = 10e3;          % switching frequency
-Ts=1/fs;
+
 % Initilizing the Simulink model
 Omegae_ini       = 0;             % Initial motor shaft speed, electrical value, [rad]
 Lndd_ini         = Lndmpm;        % This means at t=0, theta=0 and N-pole aligned with d-axis 
@@ -62,8 +53,6 @@ Lmq              = Lq-Lls;                         % [H]
 L1               = (Ld+Lq)/2;
 L2               = (Ld-Lq)/2;
 
-c1=L1/(L1^2-L2^2);
-c2=-L2/(L1^2-L2^2);
 % _________________________________________________________________________
 % Limiting the max. transient current in the output of speed loop PI
 I_rated          = 16;            % Peak rated power
@@ -90,14 +79,14 @@ case 1
     
 case 2
     % Tuned by tuning Kp first and then Ki...
-    Ki1          = 2; %2  
-    Kp1          = 0.005;  %0.05 %0.005
+    Ki1          = 2;  
+    Kp1          = 0.05;
     
-    Ki2          = 3000; %10000 %6000
-    Kp2          = 2;  %12 %6
+    Ki2          = 6000;
+    Kp2          = 6;
 
-    Ki3          = 3000;     %10000
-    Kp3          = 2;  %12
+    Ki3          = 6000;     
+    Kp3          = 6;  
     
    
 end

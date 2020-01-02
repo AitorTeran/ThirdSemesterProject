@@ -1,16 +1,7 @@
-
-Vm=45; %45
-
-
-%PLL Parameters
-Ki_pll=100; %100 %2000
-Kp_pll=100; %10 %10
-
-wo=15; %10
-
-
 % LSRPM motor, 7kW
 
+clear all
+wo=15;
 Vs               = 360;           % max. RMS phase voltage
 Vph              = Vs*sqrt(2);    % [V], peak value, phase voltage
 
@@ -25,14 +16,14 @@ Lndmpm           = 0.412;         % [Web.turns], rotor peak PM flux linkage
 
 J                = 1*1e-3;        % Motor inertia [J.m^2]
 
-Trat             = 38;            % Rated torque 38 Nm.
+Trat             = 10;            % Rated torque 38 Nm.
 Tl_const         = Trat/nrat^2;   % Fan load torque constants
 
 % ____________________________________________________________________________________________
 
 
-fs               = 10e3;          % switching frequency
-Ts=1/fs;
+fs               = 20e3;          % switching frequency
+
 % Initilizing the Simulink model
 Omegae_ini       = 0;             % Initial motor shaft speed, electrical value, [rad]
 Lndd_ini         = Lndmpm;        % This means at t=0, theta=0 and N-pole aligned with d-axis 
@@ -62,8 +53,6 @@ Lmq              = Lq-Lls;                         % [H]
 L1               = (Ld+Lq)/2;
 L2               = (Ld-Lq)/2;
 
-c1=L1/(L1^2-L2^2);
-c2=-L2/(L1^2-L2^2);
 % _________________________________________________________________________
 % Limiting the max. transient current in the output of speed loop PI
 I_rated          = 16;            % Peak rated power
@@ -110,5 +99,24 @@ end
 % --------------------------------------------------------------------------------------------
 % --------------------------------------------------------------------------------------------
 
+%PLL PI calculation. Bandwidth formula taken from reference 23 in Kaiyuan
+%paper. The formulas from reference 23, does not consider a gain in the
+%error term, so we divide with our gain 2*k to compensate. 
+
+Bw = 100;
+zeta = 0.707;
+Vm = 70;
+c2 = -L2/(L1^2-L2^2)
+deltaT = 1/10e3;
+k1 = 2*c2*deltaT;
+
+Kp_pll = Bw*(2.2*zeta-0.668*zeta^2)*1/(2*k1)
+
+Ki_pll = Bw^2*(1.1-0.334*zeta)^2*1/(2*k1)
 
 
+
+
+%Variables for NM model
+
+VoltageDisturbance = 30;

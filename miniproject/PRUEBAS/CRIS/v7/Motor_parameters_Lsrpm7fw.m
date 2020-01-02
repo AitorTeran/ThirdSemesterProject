@@ -1,12 +1,24 @@
-
-Vm=45; %45
+clear all
+Vm=60; %45
 
 
 %PLL Parameters
-Ki_pll=100; %100 %2000
-Kp_pll=100; %10 %10
 
-wo=15; %10
+% Bw = 100;
+% zeta = 0.707;
+% Vm = 70;
+% c2 = -L2/(L1^2-L2^2)
+% deltaT = 1/10e3;
+% k1 = 2*c2*deltaT;
+% 
+% Kp_pll = Bw*(2.2*zeta-0.668*zeta^2)*1/(2*k1)
+% 
+% Ki_pll = Bw^2*(1.1-0.334*zeta)^2*1/(2*k1)
+
+Ki_pll=10; %100 %2000 %10
+Kp_pll=30; %10 %10 %50
+
+wo=15; %10 %15
 
 
 % LSRPM motor, 7kW
@@ -25,13 +37,13 @@ Lndmpm           = 0.412;         % [Web.turns], rotor peak PM flux linkage
 
 J                = 1*1e-3;        % Motor inertia [J.m^2]
 
-Trat             = 38;            % Rated torque 38 Nm.
+Trat             = 10;            % Rated torque 38 Nm.
 Tl_const         = Trat/nrat^2;   % Fan load torque constants
 
 % ____________________________________________________________________________________________
 
 
-fs               = 10e3;          % switching frequency
+fs               = 20e3;          % switching frequency
 Ts=1/fs;
 % Initilizing the Simulink model
 Omegae_ini       = 0;             % Initial motor shaft speed, electrical value, [rad]
@@ -93,11 +105,11 @@ case 2
     Ki1          = 2; %2  
     Kp1          = 0.005;  %0.05 %0.005
     
-    Ki2          = 3000; %10000 %6000
-    Kp2          = 2;  %12 %6
+    Ki2          = 6000; %10000 %6000 %3000
+    Kp2          = 6;  %12 %6 %2
 
-    Ki3          = 3000;     %10000
-    Kp3          = 2;  %12
+    Ki3          = 6000;     %10000 %6000 %3000
+    Kp3          = 6;  %12 %6 %2
     
    
 end
