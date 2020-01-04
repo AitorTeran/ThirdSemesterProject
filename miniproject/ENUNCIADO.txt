@@ -1,0 +1,19 @@
+Dear all
+
+For the mini project, you can document your work in a paper format (8 pages):
+
+    A brief abstract and introduction.
+    Mathematical explanation of the method.
+    Control scheme figure showing how you implement the injection and do the signal-processing. (You should NOT include a large figure showing the complete Simulink model with all detail. If you check similar papers, you will rarely find that Simulink figures are included in the paper.)
+    Simulation results
+
+     use the real speed and position as feedback in FOC and show the estimated position and speed at different low speeds (e.g. 0 rpm, 100 rpm, 500 rpm), at steady state and rated step load torque change conditions (i.e. 0 to rated load torque and than back to 0 torque again).
+     repeat 1. but for 100 rpm only, with the real speed and estimated position as feedback in your FOC.
+
+    Discuss / interpret the results.
+    Conclusion
+
+The deadline will be sometime in Dec ( I will figure out a date later on).
+
+Best regards
+Kaiyuan
