@@ -2,7 +2,7 @@ close all
 clear all
 clc
 
-prueba_100_rpm = load('real_100_step_2.mat');
+prueba_100_rpm = load('real_500_step_2.mat');
 
 fig = figure(1);
 
@@ -51,7 +51,9 @@ hold on
 grid on
 
 for i=1:length(prueba_100_rpm.prueba_100_rpm.theta_error)
-if    prueba_100_rpm.prueba_100_rpm.theta_error(i)>2
+if    prueba_100_rpm.prueba_100_rpm.theta_error(i)<-2
+         a(i)=2*pi+prueba_100_rpm.prueba_100_rpm.theta_error(i);
+elseif    prueba_100_rpm.prueba_100_rpm.theta_error(i)>2
          a(i)=prueba_100_rpm.prueba_100_rpm.theta_error(i)-2*pi;
 else
          a(i)=prueba_100_rpm.prueba_100_rpm.theta_error(i);
@@ -60,7 +62,7 @@ end
     plot(prueba_100_rpm.prueba_100_rpm.t,a)
 %plot(prueba_100_rpm.prueba_100_rpm.t,prueba_100_rpm.prueba_100_rpm.theta_error)
 %plot(prueba_100_rpm.prueba_100_rpm.t,prueba_100_rpm.prueba_100_rpm.thetaest)
-legend('$\theta_{r}$','$\hat{\theta}_{r}$','Interpreter','Latex')
+legend('$\theta_e$','Interpreter','Latex')
 ylabel('Angle error [rad]','Interpreter','Latex')
 xlabel('Time [s]','Interpreter','Latex')
 
