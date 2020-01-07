@@ -2,7 +2,7 @@ close all
 clear all
 clc
 
-prueba_100_rpm = load('real_0_step_2.mat');
+prueba_100_rpm = load('real_100_speed_2.mat');
 
 fig = figure(1);
 
@@ -25,7 +25,7 @@ plot(prueba_100_rpm.prueba_100_rpm.t,prueba_100_rpm.prueba_100_rpm.idq_meas.q)
 legend('$i_d$','$i_q$','Interpreter','Latex')
 ylabel('dq current [A]','Interpreter','Latex')
 
-%real rotor speed
+%real and estimated rotor speed
 subplot(5,1,3)
 hold on
 grid on
@@ -33,6 +33,21 @@ plot(prueba_100_rpm.prueba_100_rpm.t,prueba_100_rpm.prueba_100_rpm.omega*60/(4*2
 plot(prueba_100_rpm.prueba_100_rpm.t,prueba_100_rpm.prueba_100_rpm.omegaest*60/(4*2*pi))
 legend('$\omega_{r}$','$\hat{\omega}_{r}$','Interpreter','Latex')
 ylabel('Speed [rpm]','Interpreter','Latex')
+ylim([-200,200])
+
+theta_500_est = prueba_100_rpm.prueba_100_rpm.thetaest;
+theta_500_real = prueba_100_rpm.prueba_100_rpm.theta;
+
+for i = 1:length(theta_500_est)
+    while theta_500_est(i)<0
+        theta_500_est(i) = theta_500_est(i)+2*pi;
+    end
+end
+for i = 1:length(theta_500_est)
+    while theta_500_real(i)<0
+        theta_500_real(i) = theta_500_real(i)+2*pi;
+    end
+end
 
 %real and estimated rotor position
 subplot(5,1,4)
