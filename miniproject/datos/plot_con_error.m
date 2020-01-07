@@ -2,7 +2,7 @@ close all
 clear all
 clc
 
-prueba_100_rpm = load('real_100_speed_2.mat');
+prueba_100_rpm = load('real_500_speed_2.mat');
 
 fig = figure(1);
 
@@ -33,7 +33,7 @@ plot(prueba_100_rpm.prueba_100_rpm.t,prueba_100_rpm.prueba_100_rpm.omega*60/(4*2
 plot(prueba_100_rpm.prueba_100_rpm.t,prueba_100_rpm.prueba_100_rpm.omegaest*60/(4*2*pi))
 legend('$\omega_{r}$','$\hat{\omega}_{r}$','Interpreter','Latex')
 ylabel('Speed [rpm]','Interpreter','Latex')
-ylim([-200,200])
+ylim([-200,600])
 
 theta_500_est = prueba_100_rpm.prueba_100_rpm.thetaest;
 theta_500_real = prueba_100_rpm.prueba_100_rpm.theta;
