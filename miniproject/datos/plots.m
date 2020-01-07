@@ -311,3 +311,6 @@ plot(real_0.real_0.t,theta_0_est)
 legend('$\theta_{r}$','$\hat{\theta}_{r}$','Interpreter','Latex')
 ylabel('Angle [rad]','Interpreter','Latex')
 xlabel('Time [s]','Interpreter','Latex')
+
+
+    
