@@ -2,7 +2,7 @@ close all
 clear all
 clc
 
-prueba_100_rpm = load('real_500_speed_2.mat');
+prueba_100_rpm = load('est_100_step_2.mat');
 
 fig = figure(1);
 
